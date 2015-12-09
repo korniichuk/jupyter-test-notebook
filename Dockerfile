@@ -27,3 +27,7 @@ USER root
 RUN $CONDA_DIR/envs/python2/bin/python \
     $CONDA_DIR/envs/python2/bin/ipython \
     kernelspec install-self
+
+# Retrieve new lists of packages
+ENV REFRESHED_AT 2015–12–09
+RUN apt-get -qq update # -qq -- no output except for errors
