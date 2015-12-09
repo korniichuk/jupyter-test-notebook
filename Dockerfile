@@ -21,3 +21,9 @@ RUN conda create -p $CONDA_DIR/envs/python2 \
     && conda clean -yt
 
 USER root
+
+# Install Python 2 kernel spec globally to avoid permission problems when
+# NB_UID switching at runtime.
+RUN $CONDA_DIR/envs/python2/bin/python \
+    $CONDA_DIR/envs/python2/bin/ipython \
+    kernelspec install-self
