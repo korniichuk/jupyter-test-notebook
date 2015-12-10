@@ -38,3 +38,5 @@ RUN apt-get install -y --no-install-recommends \
     fonts-dejavu \
     gfortran \
     gcc && apt-get clean
+
+USER jovyan
