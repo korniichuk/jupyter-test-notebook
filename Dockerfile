@@ -12,12 +12,12 @@ USER jovyan
 
 # Install matplotlib, NumPy, SciPy for Python 3
 RUN conda install --yes \
-    matplotlib numpy scipy \
+    ipywidgets matplotlib numpy scipy \
     && conda clean -yt
 
 # Install matplotlib, NumPy, SciPy for Python 2
 RUN conda create -p $CONDA_DIR/envs/python2 \
-    python=2.7 matplotlib numpy scipy \
+    python=2.7 ipywidgets matplotlib numpy scipy \
     && conda clean -yt
 
 USER root
