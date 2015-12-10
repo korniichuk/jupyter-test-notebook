@@ -61,3 +61,8 @@ RUN conda install --yes \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-randomforest=4.6*' && conda clean -yt
+
+# WORKAROUND: symlink version of zmq required by latest rzmq back into conda lib
+# https://github.com/jupyter/docker-stacks/issues/55
+RUN ln -s /opt/conda/pkgs/zeromq-4.0.*/lib/libzmq.so.4.* /opt/conda/lib/libzmq.so.4 
+RUN ln -s /opt/conda/pkgs/libsodium-0.4.*/lib/libsodium.so.4.* /opt/conda/lib/libsodium.so.4
