@@ -1,0 +1,9 @@
+{
+    "display_name": "Scala",
+    "language": "scala",
+    "argv": [
+        "/opt/spark-kernel/bin/spark-kernel",
+        "--profile",
+        "{connection_file}"
+    ]
+}
