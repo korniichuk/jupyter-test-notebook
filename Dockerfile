@@ -105,3 +105,5 @@ USER jovyan
 # Scala Spark kernel spec
 RUN mkdir -p /opt/conda/share/jupyter/kernels/scala
 COPY kernel.json /opt/conda/share/jupyter/kernels/scala/
+
+USER root
