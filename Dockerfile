@@ -76,3 +76,20 @@ RUN apt-get -y update && \
     apt-get clean
 RUN wget -qO - http://d3kbcqa49mib13.cloudfront.net/spark-${APACHE_SPARK_VERSION}-bin-hadoop2.6.tgz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s spark-${APACHE_SPARK_VERSION}-bin-hadoop2.6 spark
+
+# Scala Spark kernel
+RUN cd /tmp && \
+    echo deb http://dl.bintray.com/sbt/debian / > /etc/apt/sources.list.d/sbt.list && \
+    apt-get update && \
+    git clone https://github.com/ibm-et/spark-kernel.git && \
+    apt-get install -yq --force-yes --no-install-recommends sbt && \
+    cd spark-kernel && \
+    git checkout 3905e47815 && \
+    make dist SHELL=/bin/bash && \
+    mv dist/spark-kernel /opt/spark-kernel && \
+    chmod +x /opt/spark-kernel && \
+    rm -rf ~/.ivy2 && \
+    rm -rf ~/.sbt && \
+    rm -rf /tmp/spark-kernel && \
+    apt-get remove -y sbt && \
+    apt-get clean
