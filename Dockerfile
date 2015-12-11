@@ -68,3 +68,11 @@ RUN ln -s /opt/conda/pkgs/zeromq-4.0.*/lib/libzmq.so.4.* /opt/conda/lib/libzmq.s
 RUN ln -s /opt/conda/pkgs/libsodium-0.4.*/lib/libsodium.so.4.* /opt/conda/lib/libsodium.so.4
 
 USER root
+
+# Spark dependencies
+ENV APACHE_SPARK_VERSION 1.5.1
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends openjdk-7-jre-headless && \
+    apt-get clean
+RUN wget -qO - http://d3kbcqa49mib13.cloudfront.net/spark-${APACHE_SPARK_VERSION}-bin-hadoop2.6.tgz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s spark-${APACHE_SPARK_VERSION}-bin-hadoop2.6 spark
